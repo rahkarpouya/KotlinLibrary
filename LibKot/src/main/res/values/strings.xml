@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="cancel">انصراف</string>
+    <string name="confirm">تأیید</string>
+
+    <!--    crashActivity  -->
+    <string name="crash_close_app">بستن برنامه</string>
+    <string name="crash_error_details">مشخصات خطای برنامه</string>
+    <string name="crash_details_clipboard_label">Error information</string>
+    <string name="crash_details_close">بستن</string>
+    <string name="crash_copied">کپی شد</string>
+    <string name="crash_details_copy">کپی خطا</string>
+    <string name="crash_details_title">مشخصات خطای برنامه</string>
+    <string name="crash_occurred_explanation">برنامه متوقف شده است</string>
+    <string name="crash_restart_app">شروع مجدد برنامه</string>
+    <!--    crashActivity  -->
+
+</resources>

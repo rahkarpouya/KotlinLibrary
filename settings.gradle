@@ -1,0 +1,3 @@
+include ':LibKot'
+include ':app'
+rootProject.name = "SampleLibrary"

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:layout_marginLeft="16dp"
+    android:layout_marginRight="16dp"
+    android:theme="@style/Theme.Library"
+    app:cardBackgroundColor="@android:color/transparent"
+    app:cardCornerRadius="8dp"
+    app:cardElevation="5dp"
+    app:cardMaxElevation="5dp"
+    app:cardUseCompatPadding="true">
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivToolbarM"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="vertical"
+            android:padding="22dp"
+            android:src="@android:drawable/stat_sys_upload_done"
+            app:tint="@color/black" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txtTitleM"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:padding="8dp"
+            android:textColor="@color/black"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnConfirmM"
+            android:layout_width="match_parent"
+            android:layout_marginEnd="64dp"
+            android:layout_marginStart="64dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="8dp"
+            android:layout_weight="0.5"
+            android:clickable="true"
+            android:focusable="true"
+            android:text="@string/confirm"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            app:backgroundTint="@color/green"
+            app:cornerRadius="16dp"
+            app:rippleColor="@color/white" />
+
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+</com.google.android.material.card.MaterialCardView>
+
