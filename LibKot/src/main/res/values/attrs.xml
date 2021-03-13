@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="SliderBuilder">
+        <attr name="setItemWidth" format="integer" />
+        <attr name="setAutoScroll" format="boolean"/>
+        <attr name="setRadius" format="float"/>
+        <attr name="setTimer" format="integer"/>
+        <attr name="useCarouselLayoutManager" format="boolean"/>
+        <attr name="setMarginItem" format="integer"/>
+        <attr name="setItemElevation" format="float"/>
+        <attr name="setItemHeight" format="integer"/>
+        <attr name="setReverseLayout" format="boolean"/>
+    </declare-styleable>
+</resources>
