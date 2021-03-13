@@ -31,6 +31,7 @@ class MessageDialogBuilder(private val context: Context) {
     private var btnConfirmColor = R.color.green
 
 
+
     fun setMessage(message: String, @DrawableRes color: Int = R.color.black) = apply {
         title = message
         colorTitle = color
@@ -50,6 +51,8 @@ class MessageDialogBuilder(private val context: Context) {
     fun setOnclickBtn(confirm: View.OnClickListener? = null) = apply {
         this.confirm = confirm
     }
+
+
 
     fun create(): Dialog = Dialog(context, R.style.CustomDialogTheme).apply {
         setContentView(R.layout.dialog_message)

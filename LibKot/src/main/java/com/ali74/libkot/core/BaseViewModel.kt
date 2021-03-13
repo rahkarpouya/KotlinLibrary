@@ -9,11 +9,8 @@ import kotlin.coroutines.CoroutineContext
 
 open class BaseViewModel : ViewModel(), CoroutineScope {
 
-    val _message = MutableLiveData<String>()
-    val message: LiveData<String> = _message
-
-    val _loading = MutableLiveData<Boolean>()
-    val isLoading: LiveData<Boolean> = _loading
+    val message = MutableLiveData<String>()
+    val loading = MutableLiveData<Boolean>()
 
     private val parentJob = Job()
     private val coroutineExceptionHandler: CoroutineExceptionHandler =
@@ -21,8 +18,8 @@ open class BaseViewModel : ViewModel(), CoroutineScope {
             GlobalScope.launch {
                 throwable.message?.apply {
                     Log.i("Response_Error", this)
-                    _loading.postValue(false)
-                    _message.postValue(this)
+                    loading.postValue(false)
+                    message.postValue(this)
                 }
             }
         }
@@ -34,4 +31,26 @@ open class BaseViewModel : ViewModel(), CoroutineScope {
         parentJob.complete()
         super.onCleared()
     }
+
+
+    suspend fun <T> apiLaunchIO(block: suspend () -> T): T = withContext(Dispatchers.IO) {
+        loading.postValue(true)
+        block.invoke()
+    }
+
+    fun <T> emit(res: BaseResult<T>, data: (T) -> Unit) {
+        when (res.status) {
+            BaseResult.Status.ERROR -> {
+                loading.postValue(false)
+                message.value = res.message ?: "اشکال در انجام عملیات"
+            }
+            BaseResult.Status.SUCCESS -> {
+                loading.postValue(false)
+                res.data?.apply { data.invoke(this) }
+            }
+        }
+    }
+
+
+
 }

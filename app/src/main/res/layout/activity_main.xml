@@ -1,18 +1,90 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/txtTest"
+    <data class="MainBinding" />
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".MainActivity">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/txtTest"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/City_Dialog"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:text="City Dialog"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:textColor="@color/black"
+            android:orientation="horizontal"
+           >
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/SimpleSnackBar"
+                android:layout_width="0dp"
+                android:layout_weight="7"
+                android:layout_height="match_parent"
+                android:textColor="@color/black"
+                android:text="Simple SnackBar"/>
+
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/MarginSnackBar"
+                android:layout_width="0dp"
+                android:layout_weight="7"
+                android:layout_height="match_parent"
+                android:textColor="@color/black"
+                android:text="SnackBar Margin"/>
+
+        </LinearLayout>
+
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/Progress_Dialog"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:text="Progress Dialog"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/AboutDialog"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:text="About Dialog"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/AlertMessage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:text="Alert Message Dialog"/>
+
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/QuestionDialog"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:text="Question Alert Dialog"/>
+
+    </LinearLayout>
+
+
+</layout>

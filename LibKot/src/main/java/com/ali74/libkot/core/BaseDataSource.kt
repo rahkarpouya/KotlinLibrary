@@ -38,12 +38,7 @@ data class BaseResult<out T>(val status: Status, val data: T?, val message: Stri
     enum class Status { SUCCESS, ERROR }
 
     companion object {
-        fun <T> success(data: T): BaseResult<T> {
-            return BaseResult(Status.SUCCESS, data, null)
-        }
-
-        fun <T> error(message: String, data: T? = null): BaseResult<T> {
-            return BaseResult(Status.ERROR, data, message)
-        }
+        fun <T> success(data: T): BaseResult<T> = BaseResult(Status.SUCCESS, data, null)
+        fun <T> error(message: String, data: T? = null): BaseResult<T> = BaseResult(Status.ERROR, data, message)
     }
 }

@@ -1,4 +1,4 @@
-package com.ali74.libkot.extension
+package com.ali74.libkot.utils
 
 import androidx.databinding.BindingAdapter
 import android.graphics.Color
@@ -11,7 +11,6 @@ import androidx.appcompat.widget.AppCompatTextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.ali74.libkot.recyclerview.RVDividerItemDecoration
-import com.ali74.libkot.utils.addSeparatorText
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 

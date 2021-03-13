@@ -20,6 +20,7 @@ class SnackBarBuilder(private var message: String) {
     private var action: View.OnClickListener? = null
     private var duration = Snackbar.LENGTH_SHORT
     private var animation = Snackbar.ANIMATION_MODE_FADE
+    private var getMargin = 0F
 
     @ColorRes
     private var snackBackgroundColor = AppTheme.SnackBar.snackBackgroundColor
@@ -60,6 +61,10 @@ class SnackBarBuilder(private var message: String) {
         this.animation = animation
     }
 
+    fun setNegativeMargin(getMargin:Float) = apply {
+        this.getMargin = getMargin
+    }
+
     fun show(activity: Activity) {
         snackBar = if (action != null)
             Snackbar.make(
@@ -91,6 +96,7 @@ class SnackBarBuilder(private var message: String) {
             )
 
             text.setTextColor(ContextCompat.getColor(activity, snackMessageColor))
+            view.translationY = getMargin
 
         }
 
@@ -101,16 +107,17 @@ class SnackBarBuilder(private var message: String) {
     }
 
     fun show(view: View) {
-        snackBar = if (action != null)
-            Snackbar.make(
-                view, message, duration
-            ).setAction(actionText, action)
+        snackBar = if (action != null){
+            Snackbar.make(view, message, duration).setAction(actionText, action)
                 .setAnimationMode(animation)
                 .setBackgroundTint(ContextCompat.getColor(view.context, snackBackgroundColor))
-        else Snackbar.make(
-            view, message, duration
-        ).setAnimationMode(animation)
+
+        } else{
+            Snackbar.make(view, message, duration).setAnimationMode(animation)
             .setBackgroundTint(ContextCompat.getColor(view.context, snackBackgroundColor))
+        }
+
+
 
         snackBar?.apply {
             val text: TextView = view.findViewById(R.id.snackbar_text)
@@ -131,6 +138,8 @@ class SnackBarBuilder(private var message: String) {
             )
 
             text.setTextColor(ContextCompat.getColor(view.context, snackMessageColor))
+            view.translationY = getMargin
+
 
         }
 

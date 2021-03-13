@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data class="AboutDialogBinding"/>
+
+
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:clipToPadding="false"
+    android:paddingBottom="16dp"
+    tools:context=".ui.dialog.AboutDialog">
+
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/materialToolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimaryDark"
+        app:contentInsetEnd="0dp"
+        app:contentInsetStart="0dp"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/ivBackAbout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="8dp"
+                android:tint="@android:color/white"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_close" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/titleLogo"
+                android:layout_width="40dp"
+                android:layout_height="0dp"
+                android:layout_marginStart="40dp"
+                android:layout_marginEnd="8dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/ivBackAbout"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.appbar.MaterialToolbar>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fillViewport="true"
+        android:paddingBottom="28dp"
+        android:clipToPadding="false"
+        app:layout_constraintTop_toBottomOf="@+id/materialToolbar">
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingBottom="28dp"
+            android:clipToPadding="false">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/txtDesc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="16dp"
+                android:layout_margin="4dp"
+                android:textColor="#212121"
+                android:textSize="14sp"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/txtAddress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawablePadding="8dp"
+                android:gravity="center_vertical|right"
+                android:padding="16dp"
+                android:layout_margin="4dp"
+                android:textColor="#212121"
+                android:textSize="14sp"
+                app:drawableEndCompat="@drawable/ic_home"
+                app:layout_constraintTop_toBottomOf="@+id/txtDesc" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/txtTel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawablePadding="8dp"
+                android:gravity="right|center_vertical"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
+                android:layout_margin="4dp"
+                android:textColor="#212121"
+                android:textSize="14sp"
+                app:drawableEndCompat="@drawable/ic_call"
+                app:layout_constraintTop_toBottomOf="@+id/txtAddress" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/txtEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:drawablePadding="8dp"
+                android:gravity="right|center_vertical"
+                android:paddingLeft="16dp"
+                android:layout_margin="4dp"
+                android:paddingRight="16dp"
+                android:textColor="#212121"
+                android:textSize="14sp"
+                app:drawableEndCompat="@drawable/ic_email"
+                app:layout_constraintTop_toBottomOf="@+id/txtTel" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/txtVersion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:drawablePadding="8dp"
+                android:gravity="right|center_vertical"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
+                android:layout_margin="4dp"
+                android:textColor="#212121"
+                android:textSize="14sp"
+                app:drawableEndCompat="@drawable/ic_mobile"
+                app:layout_constraintTop_toBottomOf="@+id/txtEmail" />
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/linearWebsite"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
+                app:layout_constraintTop_toBottomOf="@+id/txtVersion">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="right|center_vertical"
+                    android:padding="8dp"
+                    android:text="طراحی شده توسط شرکت راهکارپویا"
+                    android:textColor="#212121"
+                    android:textSize="14sp" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_margin="4dp"
+                    android:src="@drawable/logo_rahkar" />
+            </androidx.appcompat.widget.LinearLayoutCompat>
+        </androidx.appcompat.widget.LinearLayoutCompat>
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

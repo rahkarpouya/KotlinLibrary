@@ -16,6 +16,7 @@ import android.util.Base64
 import android.util.Log
 import android.view.View
 import android.view.inputmethod.InputMethodManager
+import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatEditText
 import java.io.ByteArrayOutputStream
@@ -23,17 +24,19 @@ import java.io.File
 import java.text.DecimalFormat
 
 
-fun formatMobile(mobile: String) = mobile.matches("09\\d{9}".toRegex())
+fun String.toMobileFormat() = this.matches("09\\d{9}".toRegex())
 
-fun validateMelliCode(nationalCode: String): Boolean = ValidateMelliCode.isCode(nationalCode)
+fun String.validateMelliCode(): Boolean = ValidateMelliCode.isCode(this)
 
-fun convertStringToBase64(string: String): String =
-    if (string.trim().isEmpty()) ""
-    else Base64.encodeToString(string.trim().toByteArray(charset("UTF-8")), Base64.DEFAULT)
+fun String.convertStringToBase64(): String {
+   return if (this.trim().isEmpty()) ""
+    else Base64.encodeToString(this.trim().toByteArray(charset("UTF-8")), Base64.DEFAULT)
+}
 
-fun convertImageToBase64(filePath: String): String {
-    if (filePath == "") return ""
-    val bm = BitmapFactory.decodeFile(filePath)
+
+fun String.convertImageToBase64(): String {
+    if (this == "") return ""
+    val bm = BitmapFactory.decodeFile(this)
     var compress = 75
     val size = bm.byteCount
     //if size more than 1MB use more compress
@@ -46,13 +49,13 @@ fun convertImageToBase64(filePath: String): String {
     return Base64.encodeToString(bytesArray, Base64.DEFAULT)
 }
 
-fun drawableToBitmap(drawable: Drawable): Bitmap? {
-    if (drawable is BitmapDrawable) {
-        if (drawable.bitmap != null) {
-            return drawable.bitmap
+fun Drawable.drawableToBitmap(): Bitmap? {
+    if (this is BitmapDrawable) {
+        if (this.bitmap != null) {
+            return this.bitmap
         }
     }
-    val bitmap: Bitmap? = if (drawable.intrinsicWidth <= 0 || drawable.intrinsicHeight <= 0) {
+    val bitmap: Bitmap? = if (this.intrinsicWidth <= 0 || this.intrinsicHeight <= 0) {
         Bitmap.createBitmap(
             1,
             1,
@@ -60,24 +63,24 @@ fun drawableToBitmap(drawable: Drawable): Bitmap? {
         ) // Single color bitmap will be created of 1x1 pixel
     } else {
         Bitmap.createBitmap(
-            drawable.intrinsicWidth,
-            drawable.intrinsicHeight,
+            this.intrinsicWidth,
+            this.intrinsicHeight,
             Bitmap.Config.ARGB_8888
         )
     }
     val canvas = Canvas(bitmap!!)
-    drawable.setBounds(0, 0, canvas.width, canvas.height)
-    drawable.draw(canvas)
+    this.setBounds(0, 0, canvas.width, canvas.height)
+    this.draw(canvas)
     return bitmap
 }
 
-fun hideKeyboard(activity: Activity) {
+fun Activity.hideKeyboard() {
     Looper.myLooper()?.apply {
         Handler(this).postDelayed({
-            val view = activity.findViewById<View>(android.R.id.content)
+            val view = this@hideKeyboard.findViewById<View>(android.R.id.content)
             if (view != null) {
                 val imm =
-                    activity.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                    this@hideKeyboard.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
                 imm.hideSoftInputFromWindow(view.windowToken, 0)
             }
         }, 300)
@@ -85,19 +88,18 @@ fun hideKeyboard(activity: Activity) {
 
 }
 
-fun showKeyboard(activity: Activity) {
+fun Activity.showKeyboard() {
     val inputMethodManager =
-        (activity.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager)
+        (this.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager)
     inputMethodManager.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0)
 }
 
-fun copyTextToClipboard(context: Context, information: String): Boolean {
+fun Context.copyTextToClipboard(information: String): Boolean {
     if (information.trim().isEmpty())
         return false
 
     return try {
-        val clipboard =
-            context.getSystemService(AppCompatActivity.CLIPBOARD_SERVICE) as ClipboardManager
+        val clipboard = this.getSystemService(AppCompatActivity.CLIPBOARD_SERVICE) as ClipboardManager
         val clip = ClipData.newPlainText("Error information", information)
         clipboard.setPrimaryClip(clip)
         true
@@ -107,20 +109,16 @@ fun copyTextToClipboard(context: Context, information: String): Boolean {
     }
 }
 
-fun addSeparatorText(
-    text: Any,
-    showCurrency: Boolean = false,
-    currency: String = "تومان"
-): String =
+fun addSeparatorText(text: Any, showCurrency: Boolean = false, currency: String = "تومان"): String =
     if (showCurrency) DecimalFormat("#,###.##").format(text) + " " + currency
     else DecimalFormat("#,###.##").format(text)
 
-fun addSeparatorTextWatcher(editText: AppCompatEditText) {
-    editText.addTextChangedListener(TextWatcherForThousand(editText))
+fun AppCompatEditText.addSeparatorTextWatcher() {
+    this.addTextChangedListener(TextWatcherForThousand(this))
 }
 
-fun removeSeparatorTextWatcher(text: String) {
-    TextWatcherForThousand.trimCommaOfString(text.trim())
+fun String.removeSeparatorTextWatcher() {
+    TextWatcherForThousand.trimCommaOfString(this.trim())
 }
 
 fun isRootedDevice(): Boolean {
@@ -161,3 +159,14 @@ fun isEmulator(): Boolean = (Build.FINGERPRINT.startsWith("generic")
         || Build.BRAND.startsWith("generic")
         && Build.DEVICE.startsWith("generic")
         || "google_sdk" === Build.PRODUCT)
+
+
+fun EditText.trimString():String = this.text.toString().trim()
+
+fun View.setGone() {this.visibility = View.GONE}
+
+fun View.setVisible() {this.visibility = View.VISIBLE}
+
+fun View.setInvisible() {this.visibility = View.INVISIBLE}
+
+fun View.isVisible() :Boolean{ return this.visibility == View.VISIBLE }

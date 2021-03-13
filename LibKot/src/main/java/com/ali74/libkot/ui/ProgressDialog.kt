@@ -21,8 +21,6 @@ import com.ali74.libkot.R
 class ProgressDialog(context: Context, private val title: String = "لطفا منتظر بمانید ...") :
     Dialog(context, R.style.CustomDialogTheme) {
 
-    private val constrainProgress by lazy { findViewById<ConstraintLayout>(R.id.constrainProgress) }
-    private val cardProgress by lazy { findViewById<CardView>(R.id.cardProgress) }
     private val prbProgress by lazy { findViewById<ProgressBar>(R.id.prbProgress) }
     private val txtProgress by lazy { findViewById<AppCompatTextView>(R.id.txtProgress) }
 
@@ -33,11 +31,7 @@ class ProgressDialog(context: Context, private val title: String = "لطفا م�
         window!!.attributes.width = ViewGroup.LayoutParams.MATCH_PARENT
         setCancelable(false)
 
-        constrainProgress.setBackgroundColor(Color.parseColor("#60000000")) //Background Color
-        cardProgress.setCardBackgroundColor(Color.parseColor("#70000000")) //Box Color
-
         txtProgress.text = title
-        txtProgress.setTextColor(Color.WHITE)
 
         setColorFilter(
             prbProgress.indeterminateDrawable,

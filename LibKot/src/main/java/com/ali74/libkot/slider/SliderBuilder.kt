@@ -10,19 +10,20 @@ import com.ali74.libkot.utils.DP
 import java.util.*
 import java.util.concurrent.atomic.AtomicInteger
 
-class SliderBuilder<T>(private val context: Context) {
+class SliderBuilder( private  val context: Context) {
 
     private lateinit var sliderManager: LinearLayoutManager
     private val sliderSize = AtomicInteger(0)
     private var sliderTimer: Timer? = null
     private var sliderTask: TimerTask? = null
-    private var sliderAdapter: SliderAdapter<T>? = null
+
+    private lateinit var onclickListener:OnclickListener
 
     private var recyclerView: RecyclerView? = null
     private var reverseLayout = true
     private var useCarouselLayoutManager = false
     private var timerDelay: Long = 5000
-    private var models: MutableList<T> = mutableListOf()
+    private var models: MutableList<SlideShow> = mutableListOf()
     private var itemMargin = 0
     private var radius = 0f
     private var itemElevation = 0f
@@ -34,7 +35,7 @@ class SliderBuilder<T>(private val context: Context) {
 
     fun setTimer(timer: Long) = apply { timerDelay = timer }
 
-    fun setModels(models: MutableList<T>) = apply { this.models = models }
+    fun setModels(models: MutableList<SlideShow>) = apply { this.models = models }
 
     fun setMarginItem(margin: Int) = apply { itemMargin = margin.DP }
 
@@ -52,13 +53,17 @@ class SliderBuilder<T>(private val context: Context) {
 
     fun useCarouselLayoutManager(use: Boolean) = apply { useCarouselLayoutManager = use }
 
-    fun create(slider: SliderAdapter.SliderHolder<T>) {
+    fun setOnclick(onclickListener:OnclickListener) = apply {
+        this.onclickListener = onclickListener
+    }
+
+    fun create() {
 
         sliderManager = if (useCarouselLayoutManager)
             CarouselLayoutManager(context, RecyclerView.HORIZONTAL, reverseLayout)
         else LinearLayoutManager(context, RecyclerView.HORIZONTAL, reverseLayout)
 
-        sliderAdapter = SliderAdapter(
+        val sliderAdapter = SliderAdapter(
             models,
             itemMargin,
             radius,
@@ -74,11 +79,18 @@ class SliderBuilder<T>(private val context: Context) {
             val snapHelper: SnapHelper = PagerSnapHelper()
             snapHelper.attachToRecyclerView(this)
             addOnScrollListener(InfiniteScroller(sliderManager, models.size))
-            sliderAdapter?.fetchData(slider)
 
             if (autoScroll && models.size > 1)
                 schedule()
         }
+
+        sliderAdapter.setOnclick(object :SliderAdapter.OnclickListener{
+            override fun onSliderClicked(Slider: SlideShow) {
+                onclickListener.onSliderClicked(Slider)
+            }
+
+        })
+
     }
 
 
@@ -116,6 +128,13 @@ class SliderBuilder<T>(private val context: Context) {
         }
         schedule()
     }
+
+
+    interface OnclickListener{
+        fun onSliderClicked(slider:SlideShow)
+    }
+
+
 
 
 }
