@@ -62,7 +62,15 @@ class MainActivity : BindingActivity<MainBinding>() {
         models.add(SlideShow( 1,img_one, 1, 2, "null" , 5))
         models.add(SlideShow(2,img_two, 2, 2, "salam" , 5))
         models.add(SlideShow(3,img_three, 3, 2, "test" , 5))
-        models.add(SlideShow(4,img_four, 3, 2, "test" , 5))
+       /* models.add(SlideShow(4,img_four, 3, 2, "test" , 5))
+        models.add(SlideShow(4,img_two, 3, 2, "test" , 5))
+        models.add(SlideShow(4,img_two, 3, 2, "test" , 5))
+        models.add(SlideShow(4,img_two, 3, 2, "test" , 5))
+        models.add(SlideShow(4,img_two, 3, 2, "test" , 5))
+        models.add(SlideShow(4,img_two, 3, 2, "test" , 5))
+        models.add(SlideShow(4,img_two, 3, 2, "test" , 5))
+        models.add(SlideShow(4,img_two, 3, 2, "test" , 5))
+        models.add(SlideShow(4,img_two, 3, 2, "test" , 5))*/
 
         SliderBuilder(this)
             .setModels(models)
@@ -71,9 +79,10 @@ class MainActivity : BindingActivity<MainBinding>() {
             .setAutoScroll(true)
             .setTimer(3000)
             .setItemHeight(230)
+            .useCarouselLayoutManager(true)
             .setOnclick(object : SliderBuilder.OnclickListener {
                 override fun onSliderClicked(slider: SlideShow) {
-                    Toast.makeText(this@MainActivity, "Slider Clicked", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@MainActivity, "${slider.id}", Toast.LENGTH_SHORT).show()
                 }
             }).create()
     }

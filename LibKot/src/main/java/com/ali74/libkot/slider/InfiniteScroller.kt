@@ -24,11 +24,11 @@ internal class InfiniteScroller(
         if (dx < 0) {
             val firstPosition = layoutManager.findFirstCompletelyVisibleItemPosition()
             if (1 == firstPosition) {
-                layoutManager.scrollToPosition(size - 5)
+                layoutManager.scrollToPosition(size - 6)
                 return
             }
             if (0 == firstPosition) {
-                layoutManager.scrollToPosition(size - 6)
+                layoutManager.scrollToPosition(size - 7)
                 return
             }
         }
