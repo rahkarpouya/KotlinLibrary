@@ -54,22 +54,23 @@ class MainActivity : BindingActivity<MainBinding>() {
 
     private fun testSlider(){
         //sliderTester
-        val img_one = "https://wl-brightside.cf.tsp.li/resize/728x/jpg/f2c/662/7fb5c25bc493f5189bf3c7b0df.jpg"
-        val img_two = "https://s31242.pcdn.co/wp-content/uploads/2019/05/Personality-picture-test-1.jpg"
-        val img_three = "https://www.test-english.com/img/test-english-home-Level-test.jpg"
+        val img_one = "https://obbo.ir/images/banner/1494c74a18274ff18bbef31bf9c2cb0e.jpg"
+        val img_two = "https://obbo.ir/images/banner/bfb65f6afe7c4229ba7a68d3576b6c95.jpg"
+        val img_three = "https://obbo.ir/images/banner/5fddd240aa8042d49f809e5271723047.jpg"
+        val img_four = "https://obbo.ir/images/banner/788c3b42228343248224b4fa2d4de0d1.jpg"
         val models = mutableListOf<SlideShow>()
-        models.add(SlideShow(img_one, 1, 2, "null" ))
-        models.add(SlideShow(img_two, 2, 2, "salam"))
-        models.add(SlideShow(img_three, 3, 2, "test"))
+        models.add(SlideShow( 1,img_one, 1, 2, "null" , 5))
+        models.add(SlideShow(2,img_two, 2, 2, "salam" , 5))
+        models.add(SlideShow(3,img_three, 3, 2, "test" , 5))
+        models.add(SlideShow(4,img_four, 3, 2, "test" , 5))
 
         SliderBuilder(this)
             .setModels(models)
             .setRecyclerView(findViewById(R.id.txtTest))
             .setItemWidth(300)
             .setAutoScroll(true)
-            .setRadius(3f)
             .setTimer(3000)
-            .useCarouselLayoutManager(true)
+            .setItemHeight(230)
             .setOnclick(object : SliderBuilder.OnclickListener {
                 override fun onSliderClicked(slider: SlideShow) {
                     Toast.makeText(this@MainActivity, "Slider Clicked", Toast.LENGTH_SHORT).show()
