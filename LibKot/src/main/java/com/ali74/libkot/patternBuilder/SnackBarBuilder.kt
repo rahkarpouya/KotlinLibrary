@@ -96,7 +96,7 @@ class SnackBarBuilder(private var message: String) {
             )
 
             text.setTextColor(ContextCompat.getColor(activity, snackMessageColor))
-           if (anchorView != null ) anchorView = topOf
+           if (topOf != null ) anchorView = topOf
 
 
         }
@@ -139,7 +139,7 @@ class SnackBarBuilder(private var message: String) {
             )
 
             text.setTextColor(ContextCompat.getColor(view.context, snackMessageColor))
-            if (anchorView != null ) anchorView = topOf
+            if (topOf != null ) anchorView = topOf
 
         }
 
