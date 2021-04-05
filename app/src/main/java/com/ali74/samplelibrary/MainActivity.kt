@@ -31,10 +31,10 @@ class MainActivity : BindingActivity<MainBinding>() {
         testSlider()
 
         binding.SimpleSnackBar.setOnClickListener {
-            SnackBarBuilder("SimpleSnackBar").setNegativeMargin(0F).show(this@MainActivity)
+            SnackBarBuilder("SimpleSnackBar").show(this@MainActivity)
         }
         binding.MarginSnackBar.setOnClickListener {
-            SnackBarBuilder("Higher SnackBar").setNegativeMargin(-90F).show(this@MainActivity)
+            SnackBarBuilder("Higher SnackBar").show(this@MainActivity)
         }
 
         binding.AboutDialog.setOnClickListener { testAboutDialog()}
@@ -109,7 +109,7 @@ class MainActivity : BindingActivity<MainBinding>() {
         val cityDialog = CityDialog(this@MainActivity, city, 2, "انتخاب کنید")
         cityDialog.setOnClickListener(object : CityDialog.SetOnItemClick {
             override fun setOnclick(title: String, itemSelected: Int) {
-                SnackBarBuilder(title).setNegativeMargin(0F).show(this@MainActivity)
+                SnackBarBuilder(title).show(this@MainActivity)
                 cityDialog.dismiss()
             }
         })

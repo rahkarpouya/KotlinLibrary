@@ -20,7 +20,7 @@ class SnackBarBuilder(private var message: String) {
     private var action: View.OnClickListener? = null
     private var duration = Snackbar.LENGTH_SHORT
     private var animation = Snackbar.ANIMATION_MODE_FADE
-    private var anchor_View :View ? = null
+    private var topOf :View ? = null
 
     @ColorRes
     private var snackBackgroundColor = AppTheme.SnackBar.snackBackgroundColor
@@ -62,7 +62,7 @@ class SnackBarBuilder(private var message: String) {
     }
 
     fun setAnchorView(view:View) = apply {
-        this.anchor_View = view
+        this.topOf = view
     }
 
     fun show(activity: Activity) {
@@ -96,7 +96,7 @@ class SnackBarBuilder(private var message: String) {
             )
 
             text.setTextColor(ContextCompat.getColor(activity, snackMessageColor))
-           if (anchorView != null ) anchorView = anchor_View
+           if (anchorView != null ) anchorView = topOf
 
 
         }
@@ -139,7 +139,7 @@ class SnackBarBuilder(private var message: String) {
             )
 
             text.setTextColor(ContextCompat.getColor(view.context, snackMessageColor))
-            if (anchorView != null ) anchorView = anchor_View
+            if (anchorView != null ) anchorView = topOf
 
         }
 
